@@ -8,7 +8,7 @@ const FAQ = () => {
       <Typography
         style={{ marginTop: "80px", marginBottom: "40px" }}
         align="center"
-        variant="h5"
+        variant="h4"
         color="primary"
       >
         Frequently Asked Questions(FAQ):

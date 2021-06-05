@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import Shalltear from "../../assets/images/shalltear.png";
 import React from "react";
+import { useHistory } from "react-router";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     FlagFooterHolder: {
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 const CTA = () => {
+  const history = useHistory();
+  const handleCTA = () => {
+    history.push("/auth");
+  };
   const classes = useStyles();
   return (
     <div className={classes.FlagFooterHolder}>
@@ -40,6 +45,7 @@ const CTA = () => {
         style={{ height: "40px", width: "200px" }}
         variant="outlined"
         color="secondary"
+        onClick={handleCTA}
       >
         join us!
       </Button>

@@ -39,8 +39,8 @@ const Requirements = () => {
         justify="center"
         container
       >
-        <Grid item xs={12} justify="center">
-          <Typography align="center" style={{ color: "white" }} variant="h5">
+        <Grid item xs={12}>
+          <Typography align="center" style={{ color: "white" }} variant="h4">
             What are the requirements to join?
           </Typography>
           <Typography align="center" className={classes.subText}>
@@ -55,22 +55,29 @@ const Requirements = () => {
                 <ListItemIcon>
                   <Check style={{ color: "green" }} />
                 </ListItemIcon>
-                non-toxic: You need to be respectful and friendly towards other
-                members of the guild
+                <Typography variant="body1" color="primary">
+                  Non-Toxic: You need to be respectful and friendly towards
+                  other members of the guild
+                </Typography>
               </ListItem>
               <ListItem>
                 <ListItemIcon>
                   <Check style={{ color: "green" }} />
                 </ListItemIcon>
-                Active: Non-active players are automatically removed after a
-                period of time.
+                <Typography variant="body1" color="primary">
+                  Active: Non-active players are automatically removed after a
+                  period of time.
+                </Typography>
               </ListItem>
               <ListItem>
                 <ListItemIcon>
                   <Check style={{ color: "green" }} />
                 </ListItemIcon>
-                Thick-Skinned: You need to be able to accept jokes and not make
-                a big deal out of them if they do not directly affect you.
+                <Typography variant="body1" color="primary">
+                  Thick-Skinned: You need to be able to accept jokes and not
+                  make a big deal out of them if they do not directly affect
+                  you.
+                </Typography>
               </ListItem>
             </List>
           </Paper>

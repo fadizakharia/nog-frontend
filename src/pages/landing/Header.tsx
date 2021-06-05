@@ -8,8 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
     FlagHolder: {
       backgroundImage: `url(${Flag})`,
       backgroundSize: "100% 100%",
-      height: "500px",
+      height: "550px",
       width: "100%",
+      padding: "70px 0 70px 0",
     },
     figurineHolder: {
       textAlign: "center",
@@ -38,7 +39,7 @@ const Header = () => {
         {(props) => (
           <Typography
             align="center"
-            variant="h5"
+            variant="h4"
             color="secondary"
             style={props}
           >
@@ -47,8 +48,8 @@ const Header = () => {
         )}
       </Spring>
       <Spring
-        from={{ opacity: 0, marginLeft: "-500px" }}
-        to={{ opacity: 1, marginLeft: "0" }}
+        from={{ opacity: 0, marginRight: "-500px" }}
+        to={{ opacity: 1, marginRight: "0" }}
         delay={1000}
       >
         {(props) => (
@@ -63,17 +64,15 @@ const Header = () => {
           </Typography>
         )}
       </Spring>
-      <Spring
-        from={{ opacity: 0, marginTop: "-500px" }}
-        to={{ opacity: 1, marginTop: "0" }}
-        delay={2000}
-      >
+      <Spring from={{ opacity: 0 }} to={{ opacity: 1 }} delay={2000}>
         {(props) => (
           <Typography
-            className={classes.highlighted}
-            color="secondary"
-            variant="body2"
-            style={props}
+            color="textSecondary"
+            variant="h6"
+            style={{
+              ...props,
+              textShadow: "0px 3px rgba(241,191,45,0.3)",
+            }}
             align="center"
           >
             FRIENDSHIP

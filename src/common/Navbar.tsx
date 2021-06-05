@@ -1,45 +1,20 @@
-import {
-  AppBar,
-  Button,
-  createStyles,
-  makeStyles,
-  Theme,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import DrawerHolder from "./DrawerHolder";
-import React, { ChangeEvent, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { NavTab } from "./NavTab";
-import { NavTabs } from "./NavTabs";
+import { AppBar, Slide } from "@material-ui/core";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    flex: { flex: 1 },
-    mobile: {
-      [theme.breakpoints.up("md")]: {
-        display: "none",
-      },
-    },
-    desktop: {
-      [theme.breakpoints.down("sm")]: {
-        display: "none",
-      },
-    },
-  })
-);
+import React, { useEffect, useState } from "react";
 
-const Navbar = () => {
+import { RouteComponentProps, useHistory, withRouter } from "react-router";
+
+import CustomAppBar from "./CustomAppBar";
+interface navbarProps extends RouteComponentProps {}
+const Navbar = (props: navbarProps) => {
   const history = useHistory();
-  const classes = useStyles();
-  const [navigationItem, setnavigationItem] = useState(0);
+  const [navigationItem, setnavigationItem] = useState<number | boolean>(false);
 
-  const setNavigation = (event: ChangeEvent<{}>, value: number) => {
+  const setNavigation = (value: number) => {
     setnavigationItem(value);
     switch (value) {
       case 0:
         history.push("/");
-
         break;
       case 1:
         history.push("/members");
@@ -49,36 +24,80 @@ const Navbar = () => {
         history.push("/alliance");
     }
   };
+  const [isScrolled, setIsScrolled] = useState(false);
+  const handleScroll = (ev: Event) => {
+    if (window.scrollY === 0 && isScrolled === true) {
+      setIsScrolled(false);
+    } else if (window.scrollY !== 60 && isScrolled !== true) {
+      setIsScrolled(true);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isScrolled]);
+
+  useEffect(() => {
+    switch (props.location.pathname) {
+      case "/":
+        setnavigationItem(0);
+        break;
+      case "/dashboard":
+        setnavigationItem(0);
+        break;
+      case "/dashboard/":
+        setnavigationItem(0);
+        break;
+      case "/dashboard/events":
+        setnavigationItem(0);
+        break;
+      case "/dashboard/calendar":
+        setnavigationItem(0);
+        break;
+
+      case "/members":
+        setnavigationItem(1);
+        break;
+
+      case "/alliance":
+        setnavigationItem(2);
+        break;
+      default:
+        setnavigationItem(false);
+        break;
+    }
+    return () => {};
+  }, [props.location.pathname]);
+  console.log("navbar rendered");
   return (
     <div>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <div className={classes.mobile}>
-            <DrawerHolder />
-          </div>
-          <Typography variant="h4" color="secondary">
-            NOG
-          </Typography>
-          <div className={classes.flex} />
-          <NavTabs
-            value={navigationItem}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={(e, value: number) => setNavigation(e, value)}
-            aria-label="disabled tabs example"
-            className={classes.desktop}
-          >
-            <NavTab label="Home" />
-            <NavTab label="Members" />
-            <NavTab label="Request Alliance" />
-          </NavTabs>
-          <Button variant="outlined" color="secondary">
-            join us!
-          </Button>
-        </Toolbar>
-      </AppBar>
+      {isScrolled ? (
+        <Slide
+          direction="down"
+          in={isScrolled}
+          timeout={500}
+          mountOnEnter
+          unmountOnExit
+        >
+          <AppBar position="fixed" variant="elevation" color="primary">
+            <CustomAppBar
+              navigationItem={navigationItem}
+              setNavigationItem={setNavigation}
+            />
+          </AppBar>
+        </Slide>
+      ) : (
+        <AppBar position="static" variant={undefined} color="primary">
+          <CustomAppBar
+            navigationItem={navigationItem}
+            setNavigationItem={setNavigation}
+          />
+        </AppBar>
+      )}
     </div>
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

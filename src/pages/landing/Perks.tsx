@@ -24,8 +24,8 @@ const Perks = () => {
   return (
     <div>
       <Typography
-        style={{ marginBottom: "40px", marginTop: "80px" }}
-        variant="h5"
+        style={{ marginBottom: "20px", marginTop: "80px" }}
+        variant="h4"
         color="primary"
         align="center"
       >
@@ -39,14 +39,20 @@ const Perks = () => {
           padding: "10px",
           flexGrow: 1,
           width: "100vw",
-          marginBottom: "80px",
+          marginBottom: "60px",
         }}
       >
         <Grid className={classes.paper} item xs={12} md={4}>
           <div>
             <MenuBook color="primary" className={classes.perkIcon} />
-            <Typography variant="h5">Game Guides</Typography>
-            <Typography>
+            <Typography
+              variant="h5"
+              color="primary"
+              style={{ marginBottom: "20px" }}
+            >
+              Game Guides
+            </Typography>
+            <Typography color="primary" variant="subtitle1">
               That includes leveling, equipment and bossing guides. The guides
               are updated regularly as the game evolves.
             </Typography>
@@ -55,8 +61,14 @@ const Perks = () => {
         <Grid className={classes.paper} item xs={12} md={4}>
           <div>
             <SportsKabaddi color="primary" className={classes.perkIcon} />
-            <Typography variant="h5">Backup</Typography>
-            <Typography>
+            <Typography
+              variant="h5"
+              color="primary"
+              style={{ marginBottom: "20px" }}
+            >
+              Backup
+            </Typography>
+            <Typography color="primary" variant="subtitle1">
               When one of us is unable to defeat a monster alone we present a
               united front and assist them in their battles.
             </Typography>
@@ -65,8 +77,14 @@ const Perks = () => {
         <Grid className={classes.paper} item xs={12} md={4}>
           <div>
             <Gavel color="primary" className={classes.perkIcon} />
-            <Typography variant="h5">Voting System</Typography>
-            <Typography>
+            <Typography
+              variant="h5"
+              color="primary"
+              style={{ marginBottom: "20px" }}
+            >
+              Voting System
+            </Typography>
+            <Typography color="primary" variant="subtitle1">
               Everyone is important and so we vote as equals. We threw the
               hierarchy out and replaced it with a voting system.
             </Typography>
